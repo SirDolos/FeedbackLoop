@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import { AUTHORS, SITE_TITLE } from "../consts";
+---
+
+<Base title="About">
+  <div class="wrap">
+    <div class="article-header" style="border-bottom:none;">
+      <div class="eyebrow">About</div>
+      <h1>{SITE_TITLE}</h1>
+    </div>
+    <div class="article-body" style="padding-top: 0;">
+      <p>
+        {SITE_TITLE} is written by two people who got tired of secondhand
+        summaries of research and decided to go read the primary sources
+        themselves. Replace this paragraph with your actual origin story —
+        what you cover, why you started, and what readers can expect.
+      </p>
+
+      <hr class="rule" style="margin: 32px 0;" />
+
+      <div style="display:flex; flex-direction:column; gap: 20px;">
+        {
+          AUTHORS.map((author) => (
+            <div>
+              <h3 style="margin-bottom: 2px;">{author.name}</h3>
+              <p class="byline" style="margin: 0;">{author.role}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <hr class="rule" style="margin: 32px 0;" />
+
+      <p>
+        Have a tip, correction, or want to get in touch? Add your contact
+        details or a link to a contact form here.
+      </p>
+    </div>
+  </div>
+</Base>

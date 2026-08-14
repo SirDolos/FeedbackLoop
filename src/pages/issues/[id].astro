@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SubscribeForm from "../../components/SubscribeForm.astro";
+
+export async function getStaticPaths() {
+  const issues = await getCollection("issues", ({ data }) => !data.draft);
+  return issues.map((issue) => ({
+    params: { id: issue.id },
+    props: { issue },
+  }));
+}
+
+const { issue } = Astro.props;
+const { Content } = await render(issue);
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base title={issue.data.title} description={issue.data.dek}>
+  <article class="wrap">
+    <div class="article-header">
+      <div class="eyebrow">Issue No. {issue.data.issueNumber}</div>
+      <h1>{issue.data.title}</h1>
+      <p class="dek">{issue.data.dek}</p>
+      <div class="byline">
+        By {issue.data.author} · {dateFormat.format(issue.data.pubDate)}
+      </div>
+    </div>
+    <div class="article-body">
+      <Content />
+    </div>
+    <SubscribeForm
+      heading="Enjoyed this issue?"
+      copy="Subscribe to get the next one in your inbox."
+    />
+  </article>
+</Base>

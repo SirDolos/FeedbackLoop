@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import SubscribeForm from "../components/SubscribeForm.astro";
+
+const allIssues = await getCollection("issues", ({ data }) => !data.draft);
+const issues = allIssues.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const [lead, ...rest] = issues;
+const sideIssues = rest.slice(0, 3);
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base>
+  {
+    lead && (
+      <div class="wrap wrap--wide">
+        <div class="issue-row">
+          <span>Issue No. {lead.data.issueNumber}</span>
+          <span>{dateFormat.format(lead.data.pubDate)}</span>
+        </div>
+        <div class="lead-grid">
+          <div class="lead">
+            <div class="eyebrow">This week's lead</div>
+            <a href={`/issues/${lead.id}`}>
+              <h2>{lead.data.title}</h2>
+            </a>
+            <p>{lead.data.dek}</p>
+            <div class="byline">By {lead.data.author}</div>
+          </div>
+          <div class="lead-grid__divider" />
+          <div class="side">
+            {sideIssues.map((issue) => (
+              <div class="side-item">
+                <span class="eyebrow">Issue No. {issue.data.issueNumber}</span>
+                <a href={`/issues/${issue.id}`}>
+                  <h3>{issue.data.title}</h3>
+                </a>
+              </div>
+            ))}
+            {sideIssues.length === 0 && (
+              <p class="byline">More issues will appear here as you publish them.</p>
+            )}
+          </div>
+        </div>
+        <SubscribeForm />
+      </div>
+    )
+  }
+  {
+    !lead && (
+      <div class="wrap">
+        <div class="signup" style="margin-top:48px;">
+          <h4>No issues published yet</h4>
+          <p>
+            Add a Markdown file to <code>src/content/issues/</code> to publish
+            your first one.
+          </p>
+        </div>
+        <SubscribeForm />
+      </div>
+    )
+  }
+</Base>

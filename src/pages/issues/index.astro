@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const allIssues = await getCollection("issues", ({ data }) => !data.draft);
+const issues = allIssues.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "2-digit",
+  year: "2-digit",
+  timeZone: "UTC",
+});
+---
+
+<Base title="Archive">
+  <div class="wrap">
+    <div style="padding: 40px 0 8px;">
+      <div class="kicker">All issues</div>
+      <h1 style="font-size: 32px; margin-top: 8px;">Archive</h1>
+    </div>
+    <div class="archive-list">
+      {
+        issues.map((issue) => (
+          <div class="archive-entry">
+            <div class="archive-entry__date">
+              {dateFormat.format(issue.data.pubDate)}
+            </div>
+            <div>
+              <a href={`/issues/${issue.id}`}>
+                <h3>{issue.data.title}</h3>
+              </a>
+              <p>{issue.data.dek}</p>
+            </div>
+          </div>
+        ))
+      }
+      {
+        issues.length === 0 && (
+          <p class="byline" style="padding: 24px 0;">
+            No issues yet.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</Base>
