@@ -19,12 +19,28 @@ import { AUTHORS, SITE_TITLE } from "../consts";
 
       <hr class="rule" style="margin: 32px 0;" />
 
-      <div style="display:flex; flex-direction:column; gap: 20px;">
+      <div class="author-list">
         {
           AUTHORS.map((author) => (
-            <div>
-              <h3 style="margin-bottom: 2px;">{author.name}</h3>
-              <p class="byline" style="margin: 0;">{author.role}</p>
+            <div class="author-card">
+              {author.photo ? (
+                <img
+                  class="author-photo"
+                  src={author.photo}
+                  alt={author.name}
+                  width="96"
+                  height="96"
+                />
+              ) : (
+                <div class="author-photo-placeholder">
+                  {author.name.charAt(0)}
+                </div>
+              )}
+              <div>
+                <h3>{author.name}</h3>
+                <p class="byline">{author.role}</p>
+                {author.bio && <p class="bio">{author.bio}</p>}
+              </div>
             </div>
           ))
         }

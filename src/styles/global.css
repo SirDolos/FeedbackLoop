@@ -394,6 +394,67 @@ h1, h2, h3, h4 {
   margin-bottom: 8px;
 }
 
+/* -- author cards -------------------------------------------------- */
+
+.author-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.author-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.author-photo {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  filter: grayscale(1) contrast(1.05);
+}
+
+.author-photo-placeholder {
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 30px;
+  color: var(--muted);
+}
+
+.author-card h3 {
+  font-size: 19px;
+  margin: 0 0 2px;
+}
+
+.author-card .byline {
+  margin: 0 0 8px;
+}
+
+.author-card .bio {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .author-card {
+    grid-template-columns: 72px 1fr;
+  }
+  .author-photo,
+  .author-photo-placeholder {
+    width: 72px;
+    height: 72px;
+  }
+}
+
 /* -- footer -------------------------------------------------- */
 
 .site-footer {
