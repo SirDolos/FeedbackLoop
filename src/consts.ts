@@ -8,12 +8,12 @@ export const SITE_DESCRIPTION =
   "A research newsletter publishing original findings and analysis.";
 
 export const AUTHORS = [
-  { name: "Founder One", role: "Co-founder" },
-  { name: "Founder Two", role: "Co-founder" },
+  { name: "Santiago Mosca", role: "Co-founder" },
+  { name: "Clifton Warder", role: "Co-founder" },
 ];
 
 // Buttondown's embeddable form posts to this endpoint. Create a free account
 // at https://buttondown.com, then replace "your-username" below with the
 // username from your Buttondown dashboard URL. See README.md for details.
-export const BUTTONDOWN_USERNAME = "your-username";
+export const BUTTONDOWN_USERNAME = "santiagomosca";
 export const SUBSCRIBE_ACTION = `https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`;
