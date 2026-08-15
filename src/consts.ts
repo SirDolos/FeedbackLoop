@@ -17,8 +17,8 @@ export const AUTHORS = [
   {
     name: "Clifton Warder",
     role: "Co-founder",
-    photo: null,
-    bio: null,
+    photo: "/images/clifton-warder.jpg",
+    bio: "Clifton is a Finance, Investment, and Banking student at the University of Wisconsin-Madison, where he is also pursuing Real Estate and Urban Land Economics and an Accounting Certificate. He has experience in commercial real estate, capital management, government, and hedge funds. In his free time, he is an avid fisherman and hunter who loves exploring the outdoors.",
   },
 ];
 
