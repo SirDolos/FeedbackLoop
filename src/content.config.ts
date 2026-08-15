@@ -9,6 +9,7 @@ const issues = defineCollection({
     issueNumber: z.number(),
     pubDate: z.date(),
     author: z.string(),
+    tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });

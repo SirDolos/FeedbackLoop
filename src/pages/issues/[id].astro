@@ -31,6 +31,15 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
       <div class="byline">
         By {issue.data.author} · {dateFormat.format(issue.data.pubDate)}
       </div>
+      {
+        issue.data.tags.length > 0 && (
+          <div class="tag-row">
+            {issue.data.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
     </div>
     <div class="article-body">
       <Content />
