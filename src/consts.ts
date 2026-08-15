@@ -12,7 +12,7 @@ export const AUTHORS = [
     name: "Santiago Mosca",
     role: "Co-founder",
     photo: "/images/santi-mosca.jpg",
-    bio: "Santi is currently a sophomore at UW-Madison studying Finance and Data Science. His interest in finance traces back to caddying at Chicago Golf Club, where a conversation with an investment banker first sparked his curiosity about the industry.",
+    bio: "Santi is currently a sophomore at UW-Madison studying Finance and Data Science. His interest in finance traces back to caddying at Chicago Golf Club, where a conversation with an investment banker first sparked his curiosity about the industry — and where he began his investment portfolio at age 13. In his free time, he enjoys playing sports and playing new golf courses.",
   },
   {
     name: "Clifton Warder",
